@@ -59,6 +59,30 @@ catkin_make
 source devel/setup.bash
 ```
 
+### Docker
+
+Alternatively you can build a Docker image that already contains all
+dependencies and the compiled workspace.
+
+```sh
+docker build -t radar4motion .
+```
+
+To run the container with the VoD dataset mounted:
+
+```sh
+docker run --rm -it \
+  -v /path/to/view_of_delft_PUBLIC:/catkin_ws/src/radar4motion/dataset/view_of_delft_PUBLIC \
+  radar4motion
+```
+
+This will start `radar4motion_offline.launch`. Other launch files can be run
+by replacing the command, e.g.:
+
+```sh
+docker run --rm -it radar4motion roslaunch radar4motion radar4motion_online.launch
+```
+
 ## Using the [View-of-Delft (VoD) Dataset](https://github.com/tudelft-iv/view-of-delft-dataset)
 If you want to evaluate Radar4Motion with the View-of-Delft (VoD) dataset, please do the following:
 
